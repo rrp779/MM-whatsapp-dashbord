@@ -32,7 +32,7 @@ export const API_BASE_URLS: Record<Environment, string> = {
 // };
 
 /** Use mock data instead of real API calls when true. Set to false for real backend. */
-export const USE_MOCK_DATA = false;
+export const USE_MOCK_DATA = true;
 
 /** Supabase project URL (e.g. https://your-project.supabase.co). */
 export const SUPABASE_URL = 'https://hwydzukapdyetawseobk.supabase.co';
