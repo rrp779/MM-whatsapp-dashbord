@@ -1,0 +1,71 @@
+{
+  "breadcrumbs": {
+    "/": [{ "label": "Dashboard", "path": "/" }],
+    "/chat": [{ "label": "Dashboard", "path": "/" }, { "label": "Chat", "path": "/chat" }],
+    "/campaigns": [{ "label": "Dashboard", "path": "/" }, { "label": "Campaigns", "path": "/campaigns" }],
+    "/contacts": [{ "label": "Dashboard", "path": "/" }, { "label": "Contacts", "path": "/contacts" }],
+    "/ai-agent": [{ "label": "Dashboard", "path": "/" }, { "label": "AI Agent", "path": "/ai-agent" }]
+  },
+  "chat": {
+    "pageTitle": "Chat",
+    "description": "Your conversations will appear here."
+  },
+  "campaigns": {
+    "pageTitle": "Campaigns",
+    "description": "Create and manage campaigns campaigns."
+  },
+  "contacts": {
+    "pageTitle": "Contacts",
+    "description": "Import and manage your contacts."
+  },
+  "aiAgent": {
+    "pageTitle": "AI Agent",
+    "description": "Configure your AI assistant."
+  },
+  "welcome": {
+    "pageTitle": "Welcome to {{brandName}}",
+    "description": "Manage your WhatsApp conversations, broadcasts, and AI agents in one place.",
+    "setupChecklist": {
+      "title": "Setup checklist",
+      "subtitle": "Complete these steps so the app can connect to your backend and WhatsApp.",
+      "steps": [
+        {
+          "id": "api-urls",
+          "title": "Add API base URLs and make sure the backend is reachable",
+          "description": "Set your n8n webhook or API base URLs in the 'config.ts' file. The app will call GET /status at that URL to check if it’s reachable.",
+          "where": "Open the 'config.ts' file at the project root and add your base URLs. Your backend must respond to GET /status with success.",
+          "filePaths": ["config.ts"],
+          "variables": "API_BASE_URLS.production, API_BASE_URLS.uat. The /status response must be: { \"status\": \"1\", \"message\": \"success\" }",
+          "errorSubSteps": [
+            "You have not set the API_BASE_URL in the 'config.ts' file.",
+            "The URL you added is wrong, or the webhook at that URL is not responding."
+          ]
+        },
+        {
+          "id": "bot-user",
+          "title": "Connect your WhatsApp bot",
+          "description": "Your backend must return your bot’s name and phone number when the app calls GET /user.",
+          "where": "Your n8n workflow or backend must expose GET /user and return the bot’s name and phone number in the response.",
+          "variables": "The response must include data.name and data.phone_number.",
+          "errorSubSteps": [
+            "The Meta (WhatsApp) access token is missing or invalid.",
+            "The Meta / WhatsApp Business setup is incomplete or wrong.",
+            "The Supabase DB setup (tables or config) is not done correctly."
+          ]
+        },
+        {
+          "id": "supabase",
+          "title": "Add Supabase credentials for real-time updates (optional)",
+          "description": "These credentials are optional. Without them, the app works fine but you need to refresh the page to get updated messages and contacts. Add your Supabase project URL and publishable key in the config file to get real-time updates without refreshing.",
+          "where": "Open the 'config.ts' file at the project root and add your Supabase project URL and publishable key.",
+          "filePaths": ["config.ts"],
+          "variables": "SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY"
+        }
+      ],
+      "whereLabel": "Where to configure",
+      "variablesLabel": "What to set",
+      "filePathLabel": "File path",
+      "errorCausesLabel": "Possible causes"
+    }
+  }
+}

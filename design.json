@@ -1,0 +1,212 @@
+{
+  "$schema": "Design system for WhatsApp SaaS — AI replication guide. Consume runtime values (colors, theme, logo) from branding.ts.",
+  "version": "1.0.0",
+  "brandingSource": "All colors, theme, logo, and white-label values MUST be imported from branding.ts. Never hardcode these in components.",
+
+  "designPrinciples": [
+    "Professional and enterprise-grade: trustworthy, focused, no playful or consumer whimsy.",
+    "Compact information density: fit more on screen without feeling cramped; Slack/Notion-like density.",
+    "Slack and Notion as north stars: clean, minimal, purposeful, warm neutrals, subtle depth.",
+    "Consistency over novelty: reuse components and tokens; avoid one-off styles.",
+    "Accessibility first: WCAG 2.1 AA contrast, 44×44px minimum touch targets, semantic HTML, keyboard navigation.",
+    "White-label ready: every visual token (colors, fonts, logo) resolvable from branding.ts."
+  ],
+
+  "structure": {
+    "layout": "Hybrid: top app bar (brand, search, user) + collapsible sidebar for main navigation.",
+    "sidebar": {
+      "position": "Left, collapsible. Icon-only when collapsed, icon + label when expanded.",
+      "content": "Top: logo + app name. Main: Dashboard, Chat, Campaigns, Contacts, AI Agent. Bottom: Settings.",
+      "width": "Expanded: 240px. Collapsed: 64px."
+    },
+    "topBar": {
+      "height": "56px. Contains: breadcrumb or title, global search, notifications, user avatar/menu."
+    },
+    "mainContent": {
+      "padding": "24px default. Full-bleed for Chat. Constrained max-width (e.g. 720px) for chat thread; flexible for Dashboard, Campaigns, Contacts."
+    },
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1280px",
+      "2xl": "1536px"
+    },
+    "zIndex": {
+      "base": 0,
+      "sticky": 40,
+      "dropdown": 50,
+      "tooltip": 150,
+      "modal": 100,
+      "toast": 200
+    }
+  },
+
+  "spacing": {
+    "baseUnit": "4px",
+    "scale": [4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96],
+    "usage": {
+      "tight": "4–8px: list items, table cells, inline elements.",
+      "medium": "12–16px: card padding, form groups, button groups.",
+      "relaxed": "24–32px: section gaps, modal padding, major blocks."
+    },
+    "componentPadding": {
+      "button": "8px 16px (md), 6px 12px (sm), 10px 20px (lg)",
+      "input": "8px 12px, height 36–40px",
+      "card": "16px",
+      "modal": "24px",
+      "tableCell": "12px 16px"
+    }
+  },
+
+  "typography": {
+    "primary": "Inter — body, labels, tables, form copy.",
+    "heading": "Plus Jakarta Sans — headings only; fallback to primary if not loaded.",
+    "scale": {
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "base": "1rem",
+      "lg": "1.125rem",
+      "xl": "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem",
+      "4xl": "2rem"
+    },
+    "weights": {
+      "normal": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    },
+    "lineHeights": {
+      "tight": 1.25,
+      "normal": 1.5,
+      "relaxed": 1.625
+    },
+    "usage": {
+      "pageTitle": "2xl, semibold, heading font",
+      "sectionTitle": "xl, semibold, heading font",
+      "cardTitle": "base or lg, semibold",
+      "body": "base, normal, primary font",
+      "caption": "sm, normal, textMuted",
+      "label": "sm, medium"
+    }
+  },
+
+  "colors": {
+    "description": "Semantic roles. Actual values in branding.ts. Use only these tokens in UI.",
+    "semantic": {
+      "primary": "Primary actions, links, selected nav, outbound chat. branding.colors.primary",
+      "primaryHover": "Hover on primary. branding.colors.primaryHover",
+      "primaryMuted": "Badges, tags, soft highlights. branding.colors.primaryMuted",
+      "background": "Page background. branding.colors.background",
+      "surface": "Cards, panels, inputs. branding.colors.surface",
+      "surfaceElevated": "Modals, dropdowns, popovers. branding.colors.surfaceElevated",
+      "text": "Primary text. branding.colors.text",
+      "textMuted": "Secondary text, placeholders. branding.colors.textMuted",
+      "border": "Borders, dividers, table lines. branding.colors.border",
+      "success": "Success states, confirmations. branding.colors.success",
+      "warning": "Warnings, drafts. branding.colors.warning",
+      "error": "Errors, destructive actions. branding.colors.error"
+    }
+  },
+
+  "designStyle": {
+    "aesthetic": "Clean, minimal, purposeful. Slight warmth in neutrals. No decorative flair. Professional and compact.",
+    "shadows": {
+      "sm": "Subtle elevation for cards at rest.",
+      "md": "Dropdowns, raised panels.",
+      "lg": "Modals, popovers."
+    },
+    "radius": {
+      "button": "6px",
+      "input": "6px",
+      "card": "8px",
+      "modal": "12px",
+      "badge": "9999px (pill)",
+      "chatBubble": "12px 12px 12px 4px (inbound) / 12px 12px 4px 12px (outbound)"
+    },
+    "borders": "1px, color from branding.colors.border. No thick or double borders."
+  },
+
+  "iconography": {
+    "library": "Lucide React only.",
+    "sizes": {
+      "inline": "16px",
+      "button": "18–20px",
+      "nav": "20–24px",
+      "emptyState": "48px"
+    },
+    "stroke": "1.5–2px; match surrounding text color or semantic color."
+  },
+
+  "components": {
+    "button": {
+      "variants": "primary (bg-primary), secondary (border, transparent bg), ghost (transparent), destructive (error).",
+      "sizes": "sm, md, lg. Padding and height from spacing.componentPadding.",
+      "radius": "6px. Font: medium for primary, normal for secondary/ghost."
+    },
+    "input": {
+      "padding": "8px 12px",
+      "height": "36–40px",
+      "radius": "6px",
+      "border": "1px solid border token. Focus: ring 2px primary/20."
+    },
+    "select": "Match input height and radius. Chevron 16px. Options: surfaceElevated, 8px padding.",
+    "checkbox": "16×16 or 18×18. 4px gap to label. Check: primary. Border: border token.",
+    "toggle": "Track: 40×24 or 44×24. Thumb: primary when on. Accessible: 44×44 touch.",
+    "card": {
+      "padding": "16px",
+      "radius": "8px",
+      "border": "1px border or subtle shadow-sm. Hover: optional shadow-md for interactive cards."
+    },
+    "modal": {
+      "radius": "12px",
+      "padding": "24px",
+      "overlay": "rgba(0,0,0,0.5). Max-width: 480px (sm), 560px (md), 640px (lg)."
+    },
+    "drawer": {
+      "side": "Right typical. Width: 380–420px. Same surface as modal; radius on inner side only."
+    },
+    "toast": {
+      "position": "Top-right or bottom-right. surfaceElevated, shadow-lg, 8px radius. Auto-dismiss; optional action."
+    },
+    "chatBubble": {
+      "inbound": "surface/neutral, left-aligned, radius 12px 12px 12px 4px.",
+      "outbound": "primary, right-aligned, radius 12px 12px 4px 12px.",
+      "maxWidth": "75%. Padding 10px 14px. Timestamp: caption below."
+    },
+    "table": {
+      "header": "textMuted, 12px, medium. Cell padding 12px 16px.",
+      "rowHover": "surface/ghost. Striped optional. Border: 1px border between rows or bottom-only."
+    },
+    "chart": "Muted grid (border), primary for main series, textMuted for axis/labels. Minimal ink.",
+    "badge": "Pill radius. primaryMuted for default; success/warning/error for status. 6px 10px.",
+    "tabs": "Underline or pill for active. 16px gap. Underline 2px primary for active.",
+    "nav": {
+      "sidebarItem": "44px min height, 12px horizontal padding. Icon 20px, gap 12px to label. Active: primary or primaryMuted bg.",
+      "topBar": "Icons 20–24px. 44×44 touch. Avatar 32–36px."
+    },
+    "emptyState": {
+      "icon": "48px, textMuted. Title: lg semibold. Description: sm textMuted. CTA: primary button."
+    },
+    "loading": "Skeleton: surface + shimmer or spinner. Spinner: primary, 24–32px. Match content shape.",
+    "error": "Icon + title + description. Destructive or error color for icon. Retry CTA."
+  },
+
+  "accessibility": {
+    "contrast": "WCAG 2.1 AA. Text on background ≥ 4.5:1; large text ≥ 3:1.",
+    "touchTargets": "Minimum 44×44px for all interactive elements.",
+    "focus": "Visible focus ring (2px primary or outline). Never remove focus outline.",
+    "semantic": "Use button, nav, main, section, etc. aria-label on icon-only controls."
+  },
+
+  "coreFlows": {
+    "dashboard": "Overview cards, key metrics, recent activity. Compact grid; charts and tables per designStyle.",
+    "chat": "Conversation list (left or top on mobile) + thread. Message bubbles per components.chatBubble.",
+    "campaigns": "List + compose. Tables and forms. Same cards and inputs.",
+    "contacts": "List/table, filters, import. Reuse table and empty state.",
+    "settings": "Grouped sections, toggles, inputs. Card per section.",
+    "aiAgent": "Config form, logs/preview. Cards, inputs, optional code or log view."
+  }
+}
