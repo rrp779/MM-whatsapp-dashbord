@@ -39,7 +39,7 @@ export const SUPABASE_URL = 'https://hwydzukapdyetawseobk.supabase.co';
 // export const SUPABASE_URL = 'https://your-supabase-url.supabase.co';
 
 /** Supabase publishable (anon) key. Safe to expose in the frontend; use RLS in Supabase for access control. */
-export const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_WccIil6qe7uC0qqK1oEZmg_dJp5wGSA';
+export const SUPABASE_PUBLISHABLE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh3eWR6dWthcGR5ZXRhd3Nlb2JrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NzY1NzIsImV4cCI6MjA5MzA1MjU3Mn0.njNbuTTFFmjsVTPm_S1dlDPuzQQyF7BaD8rWdH7m6aA';
 // export const SUPABASE_PUBLISHABLE_KEY = 'your-supabase-publishable-key';
 
 

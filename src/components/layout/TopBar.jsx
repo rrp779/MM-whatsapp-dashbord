@@ -39,8 +39,9 @@ function TopBar({ breadcrumbs, onToggleSidebar }) {
           </span>
         ))}
         </nav>
+        
       </div>
-      <button
+     {/*  <button
         type="button"
         data-tally-open="VLz62J"
         data-tally-width="600"
@@ -54,7 +55,7 @@ function TopBar({ breadcrumbs, onToggleSidebar }) {
       >
         <MessageCircle className="h-4 w-4" strokeWidth={1.5} aria-hidden />
         <span className="hidden sm:inline">Feedback</span>
-      </button>
+      </button> */}
     </header>
   );
 }

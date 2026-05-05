@@ -9,7 +9,15 @@ import ChatSidebar from '../components/chat/ChatSidebar';
 import ChatThread from '../components/chat/ChatThread';
 import { useSupabaseRealtime } from '../hooks/useSupabaseRealtime';
 import { useSupabaseRealtimeContacts } from '../hooks/useSupabaseRealtimeContacts';
+import {
+  initNotificationSound,
+  playSound,
+  showNotification,
+  requestNotificationPermission
+} from '../utils/notificationManager';
 
+console.log("✅ notificationManager loaded");
+console.log(playSound);
 /**
  * Chat page: left sidebar with conversation list and right-hand thread with messages.
  * Data is loaded from API (or mock when USE_MOCK_DATA is true).
@@ -29,6 +37,10 @@ export default function Chat() {
   const chatsRef = useRef<Chat[]>([]);
   const messagesContainerRef = useRef<HTMLDivElement | null>(null);
   const userId = getBotUserId();
+
+useEffect(() => {
+  chatsRef.current = chats;
+}, [chats]);
 
   /**
    * Maps a MessageApiResponse to a Message type
@@ -67,11 +79,59 @@ export default function Chat() {
    * @param messageApiResponse - New message from Supabase
    */
   const handleNewMessage = useCallback(
-    (messageApiResponse: MessageApiResponse): void => {
-      // Only process messages for the currently selected contact
-      if (messageApiResponse.contact_id !== selectedChatId) {
-        return;
-      }
+  (messageApiResponse: MessageApiResponse): void => {
+   console.log("📩 handleNewMessage fired");
+    const isInbound =
+      messageApiResponse.direction === 'inbound' ||
+      messageApiResponse.direction === 'incoming';
+
+    const isDifferentChat = messageApiResponse.contact_id !== selectedChatId;
+    const isTabInactive = document.hidden;
+
+    // 🔔 ALWAYS trigger notification for inbound
+  if (isInbound) {
+  playSound(); // 🔥 ALWAYS play
+
+  const chat = chatsRef.current.find(
+    (c) => c.id === messageApiResponse.contact_id
+  );
+
+  showNotification(
+    chat?.contact.name || "New Message",
+    messageApiResponse.content,
+    () => setSelectedChatId(messageApiResponse.contact_id)
+  );
+} 
+    setChats((prevChats) => {
+  const updatedChats = prevChats.map((chat) => {
+    if (chat.id !== messageApiResponse.contact_id) return chat;
+
+    return {
+      ...chat,
+      lastMessage: {
+        text: messageApiResponse.content,
+        timestamp: convertUTCToISTFormat(messageApiResponse.timestamp),
+      },
+      unreadCount:
+        chat.id === selectedChatId
+          ? 0
+          : (chat.unreadCount || 0) + 1,
+    };
+  });
+
+  // 🔥 Move chat to top (WhatsApp behavior)
+  const sortedChats = [...updatedChats].sort((a, b) =>
+    (b.lastMessage?.timestamp || '').localeCompare(a.lastMessage?.timestamp || '')
+  );
+
+  chatsRef.current = sortedChats;
+  return sortedChats;
+}); 
+
+    // ❗ Only skip UI update (not notification)
+    if (messageApiResponse.contact_id !== selectedChatId) {
+      return;
+    }
 
       // Check for duplicates - don't add if message already exists
       setMessages((prevMessages) => {
@@ -115,8 +175,12 @@ export default function Chat() {
         });
       });
     },
-    [selectedChatId, mapMessageApiResponseToMessage]
+    [ selectedChatId, mapMessageApiResponseToMessage, setSelectedChatId ]
   );
+
+
+
+
 
   /**
    * Handles message status updates received via real-time subscription
@@ -255,7 +319,7 @@ export default function Chat() {
 
   // Set up real-time subscriptions for messages
   useSupabaseRealtime({
-    contactId: selectedChatId,
+    contactId: null, 
     userId,
     onNewMessage: handleNewMessage,
     onStatusUpdate: handleStatusUpdate,
@@ -619,6 +683,7 @@ export default function Chat() {
           selectedChatId={selectedChatId}
           onSelectChat={setSelectedChatId}
         />
+
       </div>
       {/* Chat thread: full-width on mobile/tablet when chat selected, flex-1 on desktop (lg+) */}
       {chatsLoading ? (
@@ -645,6 +710,7 @@ export default function Chat() {
             >
               Go back
             </button>
+
           </div>
         </div>
       ) : (
@@ -653,6 +719,7 @@ export default function Chat() {
             selectedChatId ? 'flex' : 'hidden lg:flex'
           }`}
         >
+
           <ChatThread
             contact={contact}
             messages={messagesLoading ? [] : messages}

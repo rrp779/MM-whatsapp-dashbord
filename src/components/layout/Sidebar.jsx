@@ -127,7 +127,7 @@ function Sidebar({ collapsed, mobileOpen, onToggle, onMobileClose }) {
       </nav>
 
       {/* WhatsApp Community — card with strong contrast and clear CTA */}
-      <div className={`border-t border-border p-2 shrink-0 ${showFullSidebar ? '' : 'flex justify-center'}`}>
+      {/* <div className={`border-t border-border p-2 shrink-0 ${showFullSidebar ? '' : 'flex justify-center'}`}>
         <a
           href={WHATSAPP_COMMUNITY_LINK}
           target="_blank"
@@ -157,7 +157,7 @@ function Sidebar({ collapsed, mobileOpen, onToggle, onMobileClose }) {
             </span>
           ) : null}
         </a>
-      </div>
+      </div> */}
     </aside>
   );
 }
