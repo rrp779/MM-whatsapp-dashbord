@@ -44,9 +44,9 @@ function Sidebar({ collapsed, mobileOpen, onToggle, onMobileClose }) {
   const nav = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/', comingSoon: false },
     { icon: MessageSquare, label: 'Chat', path: '/chat', comingSoon: false },
-    { icon: Radio, label: 'Campaigns', path: '/campaigns', comingSoon: true },
-    { icon: Users, label: 'Contacts', path: '/contacts', comingSoon: true },
-    { icon: Bot, label: 'AI Agent', path: '/ai-agent', comingSoon: true },
+    //{ icon: Radio, label: 'Campaigns', path: '/campaigns', comingSoon: true },
+   // { icon: Users, label: 'Contacts', path: '/contacts', comingSoon: true },
+   // { icon: Bot, label: 'AI Agent', path: '/ai-agent', comingSoon: true },
   ];
 
   // On mobile, always show full sidebar when open
