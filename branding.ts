@@ -105,15 +105,15 @@ const PRIMARY_PALETTE: PrimaryColorPalette = {
 export const BRANDING: BrandingConfig = {
   logo: {
     type: 'image',
-    imageSrc: '/logo.svg',
-    alt: 'n8n WhatsApp',
+    imageSrc: '/logo.png',
+    alt: 'Makeup Mystery',
     // For SVG: type: 'svg', svgViewBox: '0 0 24 24', svgPath: '13 2 3 14 12 14 11 22 21 10 12 10 13 2', backgroundColor: 'bg-primary'
   },
-  brandName: 'n8n WhatsApp',
+  brandName: 'Makeup Mystery WhatsApp',
   metadata: {
-    title: 'n8n WhatsApp — WhatsApp at scale',
+    title: 'Makeup Mystery WhatsApp — WhatsApp at scale',
     description: 'Manage your WhatsApp conversations, campaigns, and AI agents in one place.',
-    favicon: '/favicon.ico',
+    favicon: '/favicon.png',
   },
   theme: 'light',
   typography: {
