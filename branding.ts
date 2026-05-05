@@ -99,7 +99,7 @@ const PRIMARY_PALETTE: PrimaryColorPalette = {
   '600': '#2563EB',
   '700': '#1D4ED8',
   '800': '#1E40AF',
-  '900': '#1E3A8A',
+  '900': '#e50163',
 }
 
 export const BRANDING: BrandingConfig = {
