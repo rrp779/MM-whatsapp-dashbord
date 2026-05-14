@@ -669,7 +669,7 @@ useEffect(() => {
   const isChatNotFound = selectedChatId && !selectedChat && !chatsLoading;
 
   return (
-    <div className="flex flex-1 min-h-0 h-full w-full gap-0 overflow-hidden bg-surface">
+    <div className="flex flex-1 min-h-0 h-full w-full gap-0 bg-surface">
       {/* Sidebar: full-width on mobile/tablet when no chat selected, fixed w-80 on desktop (lg+) */}
      <div
   className={`min-h-0 overflow-hidden ${
