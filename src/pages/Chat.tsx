@@ -671,13 +671,13 @@ useEffect(() => {
   return (
     <div className="flex flex-1 min-h-0 h-full w-full gap-0 overflow-hidden bg-surface">
       {/* Sidebar: full-width on mobile/tablet when no chat selected, fixed w-80 on desktop (lg+) */}
-      <div
-        className={`${
-          selectedChatId
-            ? 'hidden lg:flex lg:w-80 lg:shrink-0'
-            : 'flex w-full flex-1 min-w-0 lg:w-80 lg:flex-none lg:shrink-0'
-        }`}
-      >
+     <div
+  className={`min-h-0 overflow-hidden ${
+    selectedChatId
+      ? 'hidden lg:flex lg:w-80 lg:shrink-0'
+      : 'flex w-full flex-1 min-w-0 lg:w-80 lg:flex-none lg:shrink-0'
+  }`}
+>
         <ChatSidebar
           chats={chats}
           selectedChatId={selectedChatId}
