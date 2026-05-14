@@ -73,7 +73,7 @@ export default function ChatSidebar({ chats, selectedChatId, onSelectChat }: Cha
       
       {/* Chat list section */}
       <nav
-        className="flex flex-1 flex-col gap-0.5 overflow-y-auto min-h-0"
+        className="flex flex-1 flex-col gap-0.5 overflow-y-auto min-h-100"
         aria-label="Conversation list"
       >
         {filteredChats.map((chat) => {
