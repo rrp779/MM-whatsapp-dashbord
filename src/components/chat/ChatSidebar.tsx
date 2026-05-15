@@ -73,7 +73,7 @@ export default function ChatSidebar({ chats, selectedChatId, onSelectChat }: Cha
       
       {/* Chat list section */}
       <nav className="flex-1 overflow-y-auto overflow-x-hidden min-h-0" aria-label="Conversation list">
-        <aside className="flex h-full min-h-0 w-full min-w-0 shrink-0 flex-col border-r border-border bg-surface overflow-hidden">
+        <aside className="flex h-full min-h-0 w-full min-w-0 shrink-0 flex-col border-r border-border bg-surface  ">
         {filteredChats.map((chat) => {
           const isSelected = selectedChatId === chat.id;
           const preview = chat.lastMessage?.text ?? '';
