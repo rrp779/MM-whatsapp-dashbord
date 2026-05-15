@@ -56,7 +56,7 @@ export default function ChatSidebar({ chats, selectedChatId, onSelectChat }: Cha
   }, [chats, searchQuery]);
 
   return (
-    <aside className="flex w-full min-w-0 shrink-0 flex-col border-r border-border bg-surface h-full overflow-hidden">
+    <aside className="flex w-full min-w-0 shrink-0 flex-col border-r border-border bg-surface h-full  ">
       <div className="flex h-12 shrink-0 items-center border-b border-border px-3">
         <div className="relative w-full">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-muted pointer-events-none" strokeWidth={1.5} />
